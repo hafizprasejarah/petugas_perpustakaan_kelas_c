@@ -6,6 +6,7 @@ import 'package:petugas_perpustakaan_kelas_c/app/data/constant/endpoint.dart';
 import 'package:petugas_perpustakaan_kelas_c/app/data/provider/%20api_provider.dart';
 import 'package:petugas_perpustakaan_kelas_c/app/data/provider/storage_provider.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:petugas_perpustakaan_kelas_c/app/modules/book/controllers/book_controller.dart';
 import '../../../routes/app_pages.dart';
 
 class AddBookController extends GetxController {
@@ -15,6 +16,7 @@ class AddBookController extends GetxController {
   final TextEditingController penerbitController = TextEditingController();
   final TextEditingController tahun_terbitController = TextEditingController();
   final loading = false.obs;
+  final BookController _bookController = Get.find();
 
   final count = 0.obs;
   @override
@@ -49,6 +51,7 @@ class AddBookController extends GetxController {
             }));
 
         if (response.statusCode == 201) {
+          _bookController.getData();
           Get.toNamed(Routes.BOOK);
           Get.snackbar("Berhasil", "Sukses", backgroundColor: Colors.orange);
         } else {
