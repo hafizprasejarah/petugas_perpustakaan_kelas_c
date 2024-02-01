@@ -24,6 +24,7 @@ class BookView extends GetView<BookController> {
         itemBuilder: (context, index) {
           DataBook dataBook= state[index];
           return ListTile(
+            leading: Icon(Icons.book,color: Colors.lightBlue),
             title: Text("${dataBook.judul}"),
             subtitle: Text("Penulis ${dataBook.penulis}\n ${dataBook.penerbit} - ${dataBook.tahunTerbit}"),
           );
